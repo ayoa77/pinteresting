@@ -32,6 +32,23 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
  gem 'bcrypt'
 
+#for uploading images and files
+ gem 'paperclip'
+#use bootstrap for styling
+ gem 'bootstrap'
+
+#cool transitions
+ gem 'masonry-rails'
+
+ # to connect with facebook login
+ gem 'omniauth-facebook'
+ gem 'omniauth'
+ # to hide secret keys
+ gem 'figaro'
+
+# use braintree to take payments
+ gem 'braintree'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
