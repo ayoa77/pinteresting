@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :pins
+  has_many :purchases, foreign_key: :buyer_id
   has_secure_password
 require 'securerandom'
 validates :email, uniqueness: true

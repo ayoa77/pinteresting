@@ -1,3 +1,4 @@
+
 <%= form_tag pins_path, :method => 'get' do %>
   <p>
 <%= text_field_tag :query, params[:query] %>
@@ -6,7 +7,7 @@
 
 <%end %>
 
-<div class="transitions-enabled" id="pins">
+<div class="container_pins transitions-enabled" id="pins">
   <% @pins.each do |pin| %>
     <div class="box panel panel-default">
       <%= link_to (image_tag pin.image.url), pin %>
@@ -19,4 +20,5 @@
       </p>
     </div>
   <% end %>
+</div>
 </div>
