@@ -2,17 +2,26 @@ class SessionsController < ApplicationController
     def new; end
 
     def create
-        user.find_by(email: params[:email])
-        if user && user.authenticate(params[:password])
+        if params[:provider].present?
+            user = User.from_omniauth(env['omniauth.auth'])
             session[:user_id] = user.id
-            redirect_to user_path(user), notice: 'Logged in!'
+            #   I think there may be an issue with the redirect here
+            redirect_to user
+
         else
-            flash.now.alert = 'Email or password is invalid'
-            render :new
-      end
+            user = User.find_by(email: params[:sessions][:email])
+            if user && user.authenticate(params[:sessions][:password])
+                session[:user_id] = user.id
+                redirect_to user, notice: 'logged in!'
+            else
+                flash.now.alert = 'Email or password is invalid'
+                render 'new'
+            end
+        end
+    end
+
+    def destroy
+        session[:user_id] = nil
+        redirect_to login_path, notice: 'logged out!'
+    end
   end
-  def destroy
-    session[:user_id] = nil
-   redirect_to login_path
-  end
-end

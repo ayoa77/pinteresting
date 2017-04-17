@@ -1,15 +1,16 @@
 <p id="notice"><%= notice %></p>
-
+<% if @pins.present? == false %>
+<h1>Click on <strong>New Pin</strong> at the top right to share your ideas and see them listed here!</h1>
+<% else %>
 <h1>Your Pins</h1>
-
-<table>
+<div class="container d-block mx-auto justify-content-md-center">
+  <table >
   <thead>
     <tr>
       <th>Title</th>
       <th>Pin</th.>
       <th>Description</th>
       <th>Price</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -17,9 +18,11 @@
     <% @pins.each do |pin| %>
       <tr>
         <td><%= pin.title %></td>
-      <td><%= image_tag pin.image.url %></td>
+      <td><%= image_tag pin.image.url(:thumb) %></td>
         <td><%= pin.description %></td>
         <td><%= pin.price %></td>
+          </tr>
+        <tr>
         <td><%= link_to 'Show', pin %></td>
         <% if current_user.id == pin.user_id %>
         <td><%= link_to 'Edit', edit_pin_path(pin) %></td>
@@ -27,5 +30,7 @@
       </tr>
       <% end %>
     <% end %>
+  <% end %>
   </tbody>
 </table>
+</div>

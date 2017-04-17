@@ -1,28 +1,28 @@
 <nav class="navbar navbar-toggleable-md navbar-fixed-top">
-<%= link_to "Pinteresting", root_path, class: "navbar-brand" %>
-<ul class="nav navbar-nav navbar-toggler-right">
-<% if current_user %>
-  <li class="nav-item">
-    <%= link_to "#{current_user.username}", user_path(current_user), class: 'nav-link' %>
-  </li>
-  <li class="nav-item">
-    <%= link_to "New Pin", new_pin_path, class: 'nav-link' %>
-  </li>
-  <li class="nav-item">
-    <%= link_to "Logout", logout_path, method: :delete, class: 'nav-link' %>
-  </li>
-<% else %>
-    <li class="nav-item">
-      <%= link_to 'Signup', new_user_path, class: 'nav-link' %>
-    </li>
-    <li class="nav-item">
-        <%= link_to 'Login', login_path, class: 'nav-link' %>
-    </li>
-    <li class="nav-item">
-       <%= link_to "Sign in/up  with Facebook", "/auth/facebook", id: "sign_in", class: 'nav-link' %>
-    </li>
-<% end %>
-</ul>
+    <%= link_to "Pinteresting", root_path, class: "navbar-brand" %>
+    <ul class="nav navbar-nav navbar-toggler-right">
+        <% if current_user %>
+        <li class="nav-item">
+            <%= link_to "#{current_user.username}", user_path(current_user), class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+            <%= link_to "New Pin", new_pin_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+            <%= link_to "Logout", logout_path, method: :delete, class: 'nav-link' %>
+        </li>
+    <% else %>
+        <li class="nav-item">
+            <%= link_to 'Signup', new_user_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+            <%= link_to 'Login', login_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+            <%= link_to "Sign in/up  with Facebook", "/auth/facebook", id: "sign_in", class: 'nav-link' %>
+        </li>
+        <% end %>
+    </ul>
 </nav>
 <% flash.each do |key, value| %>
 <div class="<%= flash_class(key.to_sym) %>">

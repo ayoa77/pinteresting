@@ -10,11 +10,11 @@ def create
   else
     render 'new'
 end
-def show
-  byebug
-  @user = User.find(params[:id])
-  @pins = Pins.where(user_id: @user.id)
 end
+def show
+  @user = User.find(params[:id])
+  @pins = Pin.where(user_id: @user.id)
+  render 'show'
 end
 
 
@@ -23,6 +23,6 @@ end
 private
 
  def user_params
-   params.require(:user).permit(:email, :password, :password_confirmation, :username, :address, :city, :country)
+   params.require(:user).permit(:email, :password, :password_confirmation, :username, :address, :city, :country, :provider, :uid)
 end
 end

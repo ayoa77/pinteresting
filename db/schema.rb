@@ -10,10 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170415062618) do
+ActiveRecord::Schema.define(version: 20170417094624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_trgm"
+  enable_extension "fuzzystrmatch"
 
   create_table "pins", force: :cascade do |t|
     t.string   "title"
@@ -36,8 +38,12 @@ ActiveRecord::Schema.define(version: 20170415062618) do
     t.string   "address"
     t.string   "city"
     t.string   "country"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
   end
 
 end

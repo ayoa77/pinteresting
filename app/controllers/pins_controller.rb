@@ -1,6 +1,8 @@
 class PinsController < ApplicationController
     def index
-        @pins = Pin.all
+        @pins = Pin.order('created_at DESC')
+
+        @pins = @pins.search_pins params[:query] if params[:query]
     end
 
     def new
@@ -26,6 +28,7 @@ class PinsController < ApplicationController
   def update
     @pin = Pin.find(params[:id])
     @pin.update(pin_params)
+    redirect_to pin_path(@pin)
   end
 
     private
