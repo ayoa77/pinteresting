@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<div class="container d-block mx-auto justify-content-md-center">
+<div class="container d-block mx-auto justify-content-md-center", id = "pins">
   <table >
   <thead>
     <tr>
@@ -14,9 +14,9 @@
   <tbody>
       <tr>
         <td><%= @pin.title %></td>
-      <td><%= image_tag @pin.image.url(:thumb) %></td>
+      <td><%= image_tag @pin.image.url(:medium) %></td>
         <td><%= @pin.description %></td>
-        <td><%= @pin.price %></td>
+        <td><%= link_to "Buy Now #{@pin.price}", braintree_new_path(@pin) %> </td>
           </tr>
 
   </tbody>

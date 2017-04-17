@@ -1,25 +1,29 @@
 <nav class="navbar navbar-toggleable-md navbar-fixed-top">
-    <%= link_to "Pinteresting", root_path, class: "navbar-brand" %>
+      <ul class="nav navbar-nav navbar-toggler-left">
+    <li> <%= link_to "Pinteresting", root_path, class: "navbar-link" %> </li>
+  </ul>
     <ul class="nav navbar-nav navbar-toggler-right">
         <% if current_user %>
         <li class="nav-item">
-            <%= link_to "#{current_user.username}", user_path(current_user), class: 'nav-link' %>
+            <button type="button" class="btn btn-primary btn-lg nav-link" data-toggle="modal" data-target="#mynewpin">
+                New Pin
+            </button>
         </li>
         <li class="nav-item">
-            <%= link_to "New Pin", new_pin_path, class: 'nav-link' %>
+            <%= link_to "#{current_user.username}", user_path(current_user), class: 'btn btn-primary btn-lg nav-link' %>
         </li>
         <li class="nav-item">
-            <%= link_to "Logout", logout_path, method: :delete, class: 'nav-link' %>
+            <%= link_to "Logout", logout_path, method: :delete, class: 'btn btn-primary btn-lg nav-link' %>
         </li>
     <% else %>
         <li class="nav-item">
-            <%= link_to 'Signup', new_user_path, class: 'nav-link' %>
+            <%= link_to 'Signup', new_user_path, class: 'btn btn-primary btn-lg nav-link' %>
         </li>
         <li class="nav-item">
-            <%= link_to 'Login', login_path, class: 'nav-link' %>
+            <%= link_to 'Login', login_path, class: 'btn btn-primary btn-lg nav-link' %>
         </li>
         <li class="nav-item">
-            <%= link_to "Sign in/up  with Facebook", "/auth/facebook", id: "sign_in", class: 'nav-link' %>
+            <%= link_to "Sign in/up  with Facebook", "/auth/facebook", id: "sign_in", class: 'btn btn-primary btn-lg nav-link' %>
         </li>
         <% end %>
     </ul>
@@ -29,3 +33,51 @@
     <%= value %>
 </div>
 <% end %>
+
+<!-- Modal  create action -->
+<% @pin = Pin.new %>
+<%= form_for(@pin, remote: true, :html => { :method => :post } ) do |f| %>
+<div class="modal fade" id="mynewpin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Pin</h4>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="field">
+                    <%= f.label :title %>
+                    <%= f.text_field :title, class: "form-control pin_title" %>
+                </div>
+
+                <div class="field">
+                    <%= f.label :description %>
+                    <%= f.text_area :description, class: "form-control pin_description" %>
+                </div>
+
+                <div class="field">
+                    <%= f.label :price %>
+                    Enter a full dollar value, please!</br>
+                <%= f.number_field :price, class: "form-control pin_price" %>
+            </div>
+
+            <div class="field">
+                <%= f.label :image %>
+                <%= f.file_field :image, class: "form-control pin_image" %>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" id="mynewpinclose">Close</button>
+            <%= submit_tag "Create", class: "btn btn-primary" %>
+        </div>
+    </div>
+</div>
+</div>
+<% end %>
+<!-- Modal -->
+
+</div>

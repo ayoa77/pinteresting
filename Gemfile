@@ -47,7 +47,6 @@ gem 'jbuilder', '~> 2.5'
  gem 'figaro'
 # use pg_search for search scope
  gem 'pg_search'
-
 # use braintree to take payments
  gem 'braintree'
 

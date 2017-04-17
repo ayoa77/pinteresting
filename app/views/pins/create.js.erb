@@ -1,0 +1,8 @@
+$("#mynewpost").modal('hide');
+$(".pin_title").val('');
+$(".pin_description").val('');
+$(".pin_price").val('');
+$(".pin_image").val('');
+
+$("#container_pins").prepend('<%= j render @pin %>');
+$("#pin_<%= @pin.id %>").hide().fadeIn(1000);

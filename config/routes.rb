@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     post 'login' => :create
     delete 'logout' => :destroy
   end
+  get 'post_pin', to: 'pins#create', as: 'post_pin'
   get 'signup', to: 'users#new', as: 'signup'
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
