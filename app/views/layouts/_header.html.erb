@@ -23,11 +23,14 @@
             <%= link_to 'Login', login_path, class: 'btn btn-primary btn-lg nav-link' %>
         </li>
         <li class="nav-item">
-            <%= link_to "Sign in/up  with Facebook", "/auth/facebook", id: "sign_in", class: 'btn btn-primary btn-lg nav-link' %>
+
+            <%= link_to "Sign in/up with Facebook", "/auth/facebook", id: "sign_in", class: 'btn btn-primary btn-lg nav-link'%>
+
         </li>
         <% end %>
     </ul>
 </nav>
+
 <% flash.each do |key, value| %>
 <div class="<%= flash_class(key.to_sym) %>">
     <%= value %>
@@ -36,7 +39,7 @@
 
 <!-- Modal  create action -->
 <% @pin = Pin.new %>
-<%= form_for(@pin, remote: true, :html => { :method => :post } ) do |f| %>
+<%= form_for @pin, remote: true, format: 'js', html: { multipart: true }  do |f| %>
 <div class="modal fade" id="mynewpin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

@@ -6,6 +6,13 @@ git_source(:github) do |repo_name|
 end
 
 
+gem 'carrierwave'
+# fakes3 for testing s3
+gem "fakes3", group: [:development, :test]
+# aws for image uploading and storage
+gem "aws-sdk",
+# Use this so that ajax can handle file uploads
+gem 'remotipart', '~> 1.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
 # Use postgresql as the database for Active Record

@@ -6,7 +6,11 @@ module ApplicationHelper
   def logged_in?
       !current_user.nil?
   end
-
+  def authenticate_user!
+    if current_user.nil? == true
+      redirect_to login_path
+    end
+  end
   def flash_class(level)
       case level
           when :notice then "alert alert-info"
