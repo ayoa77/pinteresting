@@ -1,6 +1,5 @@
 <div id="pins">
 
-<p id="notice"><%= notice %></p>
 <% if @pins.present? == false %>
 <h1>Click on <strong>New Pin</strong> at the top right to share your ideas and see them listed here!</h1>
 <% else %>
@@ -17,9 +16,9 @@
     </tr>
   </thead>
 
-  <tbody>
-    <% @pins.each do |pin| %>
-      <tr>
+  <% @pins.each do |pin| %>
+  <tbody id= "pin_<%=pin.id%>">
+           <tr>
         <td><%= pin.title %></td>
       <td><%= image_tag pin.image.url(:thumb) %></td>
         <td><%= pin.description %></td>
