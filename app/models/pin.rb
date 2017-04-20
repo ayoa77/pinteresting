@@ -3,12 +3,21 @@ class Pin < ApplicationRecord
   belongs_to :user
   has_many :purchases
   has_many :buyers, through: :purchases
-  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100#" }
-  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+  # mount_uploader :image, ImageUploader
   pg_search_scope :search_pins, against: [:description, :title],
                  :using => {
    tsearch:    {dictionary: 'english', prefix: true},
    trigram:    {threshold:  0.3},
    dmetaphone: {}
  }
+
+ dragonfly_accessor :image
+
+ validates :image, presence: true
+ validates_size_of :image, maximum: 500.kilobytes,
+                   message: "should be no more than 500 KB", if: :image_changed?
+
+ validates_property :format, of: :image, in: [:jpeg, :jpg, :png, :bmp], case_sensitive: false,
+                    message: "should be either .jpeg, .jpg, .png, .bmp", if: :image_changed?
+
 end

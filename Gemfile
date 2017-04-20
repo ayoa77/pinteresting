@@ -6,11 +6,10 @@ git_source(:github) do |repo_name|
 end
 
 
-gem 'carrierwave'
 # fakes3 for testing s3
 gem "fakes3", group: [:development, :test]
 # aws for image uploading and storage
-gem "aws-sdk",
+gem "aws-sdk"
 # Use this so that ajax can handle file uploads
 gem 'remotipart', '~> 1.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -38,9 +37,11 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
  gem 'bcrypt'
-
-#for uploading images and files
- gem 'paperclip'
+ # editing photos during upload
+ gem 'mini_magick'
+ # photouploading
+ gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+ gem 'fog', require: 'fog/aws'
 #use bootstrap for styling
  gem 'bootstrap'
 
@@ -56,7 +57,12 @@ gem 'jbuilder', '~> 2.5'
  gem 'pg_search'
 # use braintree to take payments
  gem 'braintree'
-
+# dragonfly for easier uploads
+ gem 'dragonfly'
+ gem 'dragonfly-s3_data_store'
+ group :production do
+   gem 'rack-cache', :require => 'rack/cache'
+ end
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -72,6 +78,14 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'guard-puma'
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
+  gem 'shoulda-callback-matchers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
