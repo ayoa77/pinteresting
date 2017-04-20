@@ -3,7 +3,6 @@ class Pin < ApplicationRecord
   belongs_to :user
   has_many :purchases
   has_many :buyers, through: :purchases
-  # mount_uploader :image, ImageUploader
   pg_search_scope :search_pins, against: [:description, :title],
                  :using => {
    tsearch:    {dictionary: 'english', prefix: true},
@@ -12,7 +11,7 @@ class Pin < ApplicationRecord
  }
 
  dragonfly_accessor :image
-
+ validates :title, presence: true
  validates :image, presence: true
  validates_size_of :image, maximum: 500.kilobytes,
                    message: "should be no more than 500 KB", if: :image_changed?

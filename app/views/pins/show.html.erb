@@ -12,7 +12,7 @@
   <tbody>
       <tr>
         <td><%= @pin.title %></td>
-      <td><%= image_tag @pin.image.url(:medium) %></td>
+      <td><%= image_tag @pin.image.thumb('450x450>').url %></td>
         <td><%= @pin.description %></td>
         <td><%= link_to "Buy Now #{@pin.price}", braintree_new_path(@pin) %> </td>
           </tr>

@@ -16,7 +16,6 @@ if params[:format].present?
         :submit_for_settlement => true
       }
      )
-
     if result.success?
         @pin = Pin.find(params[:checkout_form][:post_id].to_i)
         @pin.purchases.create(buyer_id: current_user.id, store_id: @pin.user_id)

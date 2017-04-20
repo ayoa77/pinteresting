@@ -6,8 +6,6 @@ git_source(:github) do |repo_name|
 end
 
 
-# fakes3 for testing s3
-gem "fakes3", group: [:development, :test]
 # aws for image uploading and storage
 gem "aws-sdk"
 # Use this so that ajax can handle file uploads
@@ -41,7 +39,7 @@ gem 'jbuilder', '~> 2.5'
  gem 'mini_magick'
  # photouploading
  gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
- gem 'fog', require: 'fog/aws'
+ gem 'fog'
 #use bootstrap for styling
  gem 'bootstrap'
 
@@ -69,6 +67,14 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'guard-puma'
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
+  gem 'shoulda-callback-matchers'
 end
 
 group :development do
@@ -78,14 +84,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'guard'
-  gem 'guard-rspec'
-  gem 'guard-puma'
-  gem 'rspec'
-  gem 'rspec-rails'
-  gem 'shoulda-matchers'
-  gem 'factory_girl_rails'
-  gem 'shoulda-callback-matchers'
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

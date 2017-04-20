@@ -92,9 +92,6 @@ GEM
     factory_girl_rails (4.8.0)
       factory_girl (~> 4.8.0)
       railties (>= 3.0.0)
-    fakes3 (1.0.0)
-      builder
-      thor
     faraday (0.11.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
@@ -443,7 +440,6 @@ DEPENDENCIES
   dragonfly
   dragonfly-s3_data_store
   factory_girl_rails
-  fakes3
   figaro
   fog
   guard
