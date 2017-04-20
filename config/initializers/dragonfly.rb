@@ -19,6 +19,7 @@ Dragonfly.app.configure do
               bucket_name: ENV['S3_BUCKET'],
               access_key_id: ENV['AWS_ACCESS_KEY_ID'],
               secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
+              region: 'ap-northeast-2',
               url_scheme: 'https'
   end
 end
