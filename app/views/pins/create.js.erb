@@ -7,5 +7,5 @@ $(".pin_image").val('');
 
 $content = $('<%= j render @pin %>').filter('div');
 $('#pins').prepend($content).imagesLoaded(function(){
-                  $('#pins').masonry( 'appended', $content);
+                  $('#pins').masonry( 'appended', $content).fadeIn(1000);
               });

@@ -1,38 +1,10 @@
-<div id="pins">
+<div class="pins container_pins transitions-enabled" id="pins">
 
 <% if @pins.present? == false %>
 <h1>Click on <strong>New Pin</strong> at the top right to share your ideas and see them listed here!</h1>
 <% else %>
-</div>
-<h1>Your Pins</h1>
-<div class="container d-block mx-auto justify-content-md-center">
-  <table >
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Pin</th.>
-      <th>Description</th>
-      <th>Price</th>
-    </tr>
-  </thead>
 
-  <% @pins.each do |pin| %>
-  <tbody id= "pin_<%=pin.id%>">
-           <tr>
-        <td><%= pin.title %></td>
-      <td><%= image_tag pin.image.thumb("100x100#").url%></td>
-        <td><%= pin.description %></td>
-        <td><%= pin.price %></td>
-          </tr>
-        <tr>
-        <td><%= link_to 'Show', pin %></td>
-        <% if current_user.id == pin.user_id %>
-        <td><%= link_to 'Edit', edit_pin_path(pin) %></td>
-        <td><%= link_to 'Destroy', pin, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-      <% end %>
-    <% end %>
+
+  <%= render @pins %>
+  </div>
   <% end %>
-  </tbody>
-</table>
-</div>

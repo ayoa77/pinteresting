@@ -1,14 +1,7 @@
 
-<%= form_tag pins_path, :method => 'get' do %>
-  <p>
-<%= text_field_tag :query, params[:query] %>
-<%= submit_tag "Search", :name => nil %>
-  </p>
 
-<%end %>
 
 <div class="pins container_pins transitions-enabled" id="pins">
 <%= render :partial => 'pin', :collection => @pins %>
 
-</div>
 </div>
