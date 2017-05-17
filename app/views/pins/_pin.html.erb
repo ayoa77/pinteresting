@@ -1,11 +1,31 @@
 <div class="box panel panel-default" id="pin_<%= pin.id %>">
-  <%= link_to (image_tag pin.image.thumb("300x300>").url), pin %>
-  <h2>
-    <%= link_to pin.title, pin %>
-  </h2>
-  <p class="user">
-    Submitted by
-
-    <%= pin.user.username %>
-  </p>
-</div>
+    <%= link_to (image_tag pin.image.thumb("300x300>").url), pin %>
+    <h2>
+        <%= link_to pin.title, pin %>
+    </h2>
+    <p class="user">
+        <% if current_page?(user_path(current_user))%>
+        <%= link_to 'Delete', pin, method: :delete, class: "btn btn-primary btn-outline-info btn-sm", remote: true, data: { confirm: 'Are you sure?' } %>
+    </p>
+  </div>
+        <% elsif current_page?(pin_path(pin)) && current_user.id != pin.user_id %>
+          Submitted by
+        <%= pin.user.username %></br>
+        <%= link_to "Buy Now for $#{pin.price}0", braintree_new_path(pin) %></br>
+        <%= pin.description %></br>
+    </p>
+  </div>
+        <% elsif current_page?(pin_path(pin)) && current_user.id == pin.user_id %>
+        <a id="editpinbtn" class="btn btn-primary btn-outline-info btn-bg" data-toggle="modal" data-target="#editmypin" data: {pin_id: pin.id}>
+            Edit
+        </a>
+        <%= link_to 'Delete', pin, method: :delete, class: "btn btn-primary btn-outline-info btn-bg", type: 'anchor', remote: true, data: { confirm: 'Are you sure?' } %> </br>
+        <%= pin.description %></br>
+    </p>
+  </div>
+        <%else%>
+        Submitted by
+        <%= pin.user.username %>
+      </p>
+    </div>
+      <% end %>

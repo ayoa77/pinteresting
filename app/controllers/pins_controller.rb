@@ -27,13 +27,21 @@ class PinsController < ApplicationController
         end
     end
 
-    def show; end
+    def show
+     @pin = Pin.find(params[:id])
+     end
 
-    def edit; end
+    def edit
+    @pin = Pin.find(params[:id])
+     end
 
     def update
         @pin.update(pin_params)
-        redirect_to pin_path(@pin)
+        respond_to do |format|
+            format.html { redirect_to pin_path(@pin), notice: 'Pin was successfully edited.' }
+            format.json { render :show, status: :edited, locaiton: @pin, notice: 'Pin was successfully edited.' }
+            format.js
+          end
     end
 
     def destroy
