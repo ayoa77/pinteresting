@@ -39,7 +39,7 @@ class PinsController < ApplicationController
         @pin.update(pin_params)
         respond_to do |format|
             format.html { redirect_to pin_path(@pin), notice: 'Pin was successfully edited.' }
-            format.json { render :show, status: :edited, locaiton: @pin, notice: 'Pin was successfully edited.' }
+            format.json { render :show, status: :edited, location: @pin, notice: 'Pin was successfully edited.' }
             format.js
           end
     end

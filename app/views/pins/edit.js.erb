@@ -1,3 +1,6 @@
 $("#editmypin").modal('hide');
 
 $content = $('<%= j render @pin %>').filter('div').fadeIn(1000);
+$('#pins').prepend($content).imagesLoaded(function(){
+                  $('#pins').masonry('appended', $content).fadeIn(1000);
+              });
